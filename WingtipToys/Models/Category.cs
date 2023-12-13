@@ -18,5 +18,14 @@ namespace WingtipToys.Models
         public string Description { get; private set; }
 
         public virtual ICollection<Product> Products { get; private set; }
+
+        public static Category Of(int categoryId, string categoryName)
+        {
+            return new Category
+            {
+                CategoryID = categoryId,
+                CategoryName = categoryName,
+            };
+        }
     }
 }

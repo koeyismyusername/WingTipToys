@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace WingtipToys.Models
 {
@@ -21,5 +22,18 @@ namespace WingtipToys.Models
         public int? CategoryID { get; private set; }
 
         public virtual Category Category { get; private set; }
+
+        public static Product Of(int productId, string productName, string description, string imagePath, double unitPrice, int categoryID)
+        {
+            return new Product
+            {
+                ProductID = productId,
+                ProductName = productName,
+                Description = description,
+                ImagePath = imagePath,
+                UnitPrice = unitPrice,
+                CategoryID = categoryID,
+            };
+        }
     }
 }
