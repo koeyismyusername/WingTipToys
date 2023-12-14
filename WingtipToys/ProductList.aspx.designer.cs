@@ -10,6 +10,6 @@
 namespace WingtipToys {
     
     
-    public partial class _Default {
+    public partial class ProductList {
     }
 }

@@ -7,6 +7,8 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using System.Linq;
+using WingtipToys.Models;
 
 namespace WingtipToys
 {
@@ -75,6 +77,15 @@ namespace WingtipToys
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+        }
+
+        public IQueryable<Category> GetCategories()
+        {
+            using (var _db = new ProductContext())
+            {
+                IQueryable<Category> query = _db.Categories;
+                return query;
+            }
         }
     }
 
