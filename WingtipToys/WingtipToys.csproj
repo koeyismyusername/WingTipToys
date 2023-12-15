@@ -50,7 +50,18 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -169,12 +180,18 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="App_Data\MDFDEV.mdf" />
+    <Content Include="App_Data\MDFDEV_Log.mdf" />
+    <Content Include="App_Data\TutorialDB.mdf" />
+    <Content Include="App_Data\TutorialDB_log.ldf">
+      <DependentUpon>TutorialDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap-original.css" />
-    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap-original.min.css" />
+    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
@@ -185,11 +202,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-origin.min.css.map" />
-    <Content Include="Content\bootstrap-origin.css.map" />
+    <Content Include="Content\bootstrap-original.min.css.map" />
+    <Content Include="Content\bootstrap-original.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Account\Web.config" />
+    <Content Include="DBBackup\MDFTEST.bak" />
+    <Content Include="images\Thumbs.db" />
+    <Content Include="images\Thumbs\Thumbs.db" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="images\boatbig.png" />
     <Content Include="images\boatpaper.png" />
     <Content Include="images\boatsail.png" />
@@ -207,9 +228,6 @@
     <Content Include="images\planepaper.png" />
     <Content Include="images\planeprop.png" />
     <Content Include="images\rocket.png" />
-    <Content Include="images\Thumbs\Thumbs.db" />
-    <Content Include="images\Thumbs.db" />
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="images\Thumbs\boatbig.png" />
     <Content Include="images\Thumbs\boatpaper.png" />
     <Content Include="images\Thumbs\boatsail.png" />
@@ -232,7 +250,6 @@
     <Content Include="images\truckbig.png" />
     <Content Include="images\truckearly.png" />
     <Content Include="images\truckfire.png" />
-    <Content Include="ProductDetails.aspx" />
     <Content Include="ProductList.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -407,13 +424,6 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductContext.cs" />
     <Compile Include="Models\ProductDatabaseInitializer.cs" />
-    <Compile Include="ProductDetails.aspx.cs">
-      <DependentUpon>ProductDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ProductDetails.aspx.designer.cs">
-      <DependentUpon>ProductDetails.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ProductList.aspx.cs">
       <DependentUpon>ProductList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -445,9 +455,7 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
