@@ -56,6 +56,19 @@ namespace WingtipToys.Logic
                    select ShoppingCartDto.Of(cart, product);
         }
 
+        public decimal GetTotal()
+        {
+            var shoppingCartId = GetCartId();
+            decimal? total = decimal.Zero;
+
+            total = (decimal?)(from cartItem in wingTipToysDB.GetTable<CartItem>()
+                     where cartItem.CartId.Equals(shoppingCartId)
+                     join product in wingTipToysDB.GetTable<Product>() on cartItem.ProductId equals product.ProductID
+                     select (int?)cartItem.Quantity * product.UnitPrice).Sum();
+
+            return total ?? decimal.Zero;
+        }
+
         public void Dispose()
         {
             wingTipToysDB.Dispose();

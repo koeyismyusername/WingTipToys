@@ -16,7 +16,22 @@ namespace WingtipToys
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            BindTotal();
+        }
 
+        private void BindTotal()
+        {
+            decimal cartTotal = 0;
+            cartTotal = shoppingCartActions.GetTotal();
+
+            if (cartTotal > 0)
+                lblTotal.Text = $"{cartTotal:c}";
+            else
+            {
+                LabelTotalText.Text = "";
+                lblTotal.Text = "";
+                ShoppingCartTitle.InnerText = "Shopping Cart is Empty.";
+            }
         }
 
         public IQueryable<ShoppingCartDto> GetShoppingCartItems()
