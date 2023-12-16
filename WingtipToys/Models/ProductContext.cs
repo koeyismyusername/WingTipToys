@@ -8,11 +8,12 @@ namespace WingtipToys.Models
 {
     public class ProductContext : DbContext
     {
-        public ProductContext() : base("WingtipToys")
+        private ProductContext() : base("WingtipToys")
         {
 
         }
 
+        public static ProductContext New { get => new ProductContext(); }
         public DbSet<Category> Categories { get; private set; }
         public DbSet<Product> Products { get; private set; }
 

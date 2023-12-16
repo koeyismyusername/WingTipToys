@@ -1,24 +1,28 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Linq.Mapping;
 
 namespace WingtipToys.Models
 {
+    [Table(Name = "[dbo].[Products]")]
     public class Product
     {
-        [ScaffoldColumn(false)]
+        [Column(Name = "seq", CanBeNull = false, DbType = "int", IsDbGenerated = true, IsPrimaryKey = true)]
         public int ProductID { get; private set; }
 
-        [Required, StringLength(100), Display(Name = "Name")]
+        [Column(Name = "name", CanBeNull = false, DbType = "nvarchar(100)")]
         public string ProductName { get; private set; }
 
-        [Required, StringLength(10000), Display(Name = "Product Description"), DataType(DataType.MultilineText)]
+        [Column(Name = "description", CanBeNull = false, DbType = "nvarchar(4000)")]
         public string Description { get; private set; }
 
+        [Column(Name = "imageUrl", DbType = "nvarchar(max)")]
         public string ImagePath { get; private set; }
 
-        [Display(Name = "Price")]
-        public double? UnitPrice { get; private set; }
+        [Column(Name = "unitPrice", CanBeNull = false, DbType = "float")]
+        public double UnitPrice { get; private set; }
 
+        [Column(Name = "categoryId", DbType = "int")]
         public int? CategoryID { get; private set; }
 
         public virtual Category Category { get; private set; }
