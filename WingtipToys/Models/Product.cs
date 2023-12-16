@@ -25,8 +25,6 @@ namespace WingtipToys.Models
         [Column(Name = "categoryId", DbType = "int")]
         public int? CategoryID { get; private set; }
 
-        public virtual Category Category { get; private set; }
-
         public static Product Of(int productId, string productName, string description, string imagePath, double unitPrice, int categoryID)
         {
             return new Product

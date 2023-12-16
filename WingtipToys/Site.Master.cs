@@ -12,11 +12,12 @@ using WingtipToys.Models;
 
 namespace WingtipToys
 {
-    public partial class SiteMaster : MasterPage
+    public partial class SiteMaster : MasterPage, IDisposable
     {
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
+        private readonly WingtipToysDatabase wingtipToysDB = WingtipToysDatabase.New;
 
         protected void Page_Init(object sender, EventArgs e)
         {
@@ -81,11 +82,17 @@ namespace WingtipToys
 
         public IQueryable<Category> GetCategories()
         {
-            using (var _db = ProductContext.New)
-            {
-                IQueryable<Category> query = _db.Categories;
-                return query;
-            }
+            return wingtipToysDB.GetTable<Category>();
+        }
+
+        public override void Dispose()
+        {
+            wingtipToysDB.Dispose();
+        }
+
+        ~SiteMaster()
+        {
+            Dispose();
         }
     }
 

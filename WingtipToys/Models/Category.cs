@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Web;
 
 namespace WingtipToys.Models
 {
+    [Table(Name = "Categories")]
     public class Category
     {
-        [ScaffoldColumn(false)]
+        [Column(Name ="seq", CanBeNull = false, DbType ="int", IsDbGenerated = true, IsPrimaryKey = true)]
         public int CategoryID { get; private set; }
 
-        [Required, StringLength(100), Display(Name = "Name")]
+        [Column(Name ="name", CanBeNull = false, DbType ="nvarchar(100)")]
         public string CategoryName { get; private set; }
 
-        [Display(Name = "Product Description")]
+        [Column(Name ="description", DbType ="nvarchar(4000)")]
         public string Description { get; private set; }
-
-        public virtual ICollection<Product> Products { get; private set; }
 
         public static Category Of(int categoryId, string categoryName)
         {
